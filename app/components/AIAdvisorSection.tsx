@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Zap, Brain, Layers, ArrowRight } from "lucide-react";
-import { FadeIn } from "../utils/animations";
+import { FadeIn, AnimatedTextLine } from "../utils/animations";
 import { TwoColumnLayout } from "./ui/Section";
 
 const AIAdvisorSection = () => {
@@ -27,9 +27,14 @@ const AIAdvisorSection = () => {
                 <div className="text-blue-500 font-medium mb-4">
                   Expert Guidance
                 </div>
-                <h2 className="font-inter font-bold text-4xl md:text-5xl mb-8 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  AI Financial Advisor
-                </h2>
+                <div className="font-inter font-bold mb-8">
+                  <AnimatedTextLine
+                    text="AI Financial Advisor"
+                    className="text-4xl md:text-5xl"
+                    delay={0}
+                    gradient={true}
+                  />
+                </div>
                 <p className="text-lg text-gray-300 max-w-xl mb-12 leading-relaxed">
                   Get personalized financial guidance powered by advanced AI
                   that understands your unique situation. Our advisor analyzes

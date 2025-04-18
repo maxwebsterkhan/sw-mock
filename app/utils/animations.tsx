@@ -66,12 +66,14 @@ export interface AnimatedTextLineProps {
   text: string;
   className?: string;
   delay?: number;
+  gradient?: boolean;
 }
 
 export const AnimatedTextLine: React.FC<AnimatedTextLineProps> = ({
   text,
   className = "",
   delay = 0,
+  gradient = false,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -84,8 +86,16 @@ export const AnimatedTextLine: React.FC<AnimatedTextLineProps> = ({
   }, []);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      <p className="text-white relative">{text}</p>
+    <div className={`relative overflow-visible ${className}`}>
+      <p
+        className={`relative py-1 ${
+          gradient
+            ? "bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            : "text-white"
+        }`}
+      >
+        {text}
+      </p>
       <div
         className="absolute top-0 right-0 bg-[#0b0a0a] opacity-65 h-full z-2"
         style={{

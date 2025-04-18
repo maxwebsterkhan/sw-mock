@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { AnimatedTextLine } from "../utils/animations";
 import {
   PortfolioValueChart,
   PortfolioDistributionChart,
@@ -127,12 +128,17 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-0 mb-6 md:mb-12 mt-16 md:mt-24">
             <div className="space-y-1 md:space-y-3">
-              <h1 className="text-3xl md:text-5xl font-bold mb-1 md:mb-2 opacity-0 animate-fade-in">
-                Check your
-              </h1>
-              <h2 className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent opacity-0 animate-fade-in-delay">
-                Financial Health
-              </h2>
+              <AnimatedTextLine
+                text="Check Your"
+                className="text-3xl md:text-5xl font-bold mb-1 md:mb-2"
+                delay={0}
+              />
+              <AnimatedTextLine
+                text="Financial Health"
+                className="text-4xl md:text-7xl font-bold"
+                delay={0.2}
+                gradient={true}
+              />
             </div>
 
             {/* Date Display */}

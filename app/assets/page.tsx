@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { Plus, Search, Filter, Pencil, Trash2, Info } from "lucide-react";
 import AddAssetModal from "../components/AddAssetModal";
 import InlineAssetEditor from "../components/InlineAssetEditor";
+import { AnimatedTextLine } from "../utils/animations";
 
 interface Asset {
   id: string;
@@ -164,12 +165,17 @@ export default function Assets() {
       <div className="max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-0 mb-8 md:mb-12 mt-16 md:mt-24">
           <div className="space-y-3">
-            <h1 className="text-3xl md:text-5xl font-bold mb-2 opacity-0 animate-fade-in">
-              Manage Your
-            </h1>
-            <h2 className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent opacity-0 animate-fade-in-delay">
-              Investment Portfolio
-            </h2>
+            <AnimatedTextLine
+              text="Manage Your"
+              className="text-3xl md:text-5xl font-bold mb-2"
+              delay={0}
+            />
+            <AnimatedTextLine
+              text="Investment Portfolio"
+              className="text-4xl md:text-7xl font-bold"
+              delay={0.2}
+              gradient={true}
+            />
           </div>
 
           <button

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { Plus, MessageSquare } from "lucide-react";
+import { AnimatedTextLine } from "../utils/animations";
 
 interface Message {
   role: "user" | "assistant";
@@ -113,12 +114,17 @@ export default function AdvisorPage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-0 mb-6 md:mb-12 mt-16 md:mt-24">
           <div className="space-y-1 md:space-y-3">
-            <h1 className="text-3xl md:text-5xl font-bold mb-1 md:mb-2 opacity-0 animate-fade-in">
-              Chat with <span className="underline">your</span> personal
-            </h1>
-            <h2 className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent opacity-0 animate-fade-in-delay">
-              AI Advisor
-            </h2>
+            <AnimatedTextLine
+              text="Chat With Your Personal"
+              className="text-3xl md:text-5xl font-bold mb-1 md:mb-2"
+              delay={0}
+            />
+            <AnimatedTextLine
+              text="Financial Advisor"
+              className="text-4xl md:text-7xl font-bold"
+              delay={0.2}
+              gradient={true}
+            />
           </div>
 
           {/* Mobile sidebar toggle */}
@@ -151,7 +157,7 @@ export default function AdvisorPage() {
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 opacity-0 animate-fade-in-delay-2">
           {/* Sidebar - Mobile (accordion) */}
-          <div className="md:hidden mb-6">
+          <div className="md:hidden">
             <div
               className={`bg-[#1c1c1c] rounded-xl border border-gray-800 overflow-hidden transition-all duration-300 ${
                 showMobileSidebar

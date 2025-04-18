@@ -34,16 +34,19 @@ const Hero: React.FC<HeroProps> = ({
           text={title1}
           className="text-5xl md:text-[68px] mb-1"
           delay={0}
+          gradient={true}
         />
         <AnimatedTextLine
           text={title2}
           className="text-5xl md:text-[68px] mb-1"
           delay={0.2}
+          gradient={true}
         />
         <AnimatedTextLine
           text={title3}
           className="text-5xl md:text-[68px]"
           delay={0.4}
+          gradient={true}
         />
       </div>
 

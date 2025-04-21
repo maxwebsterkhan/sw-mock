@@ -29,7 +29,7 @@ const AIAdvisorSection = () => {
                 </div>
                 <div className="font-inter font-bold mb-8">
                   <AnimatedTextLine
-                    text="AI Financial Advisor"
+                    text="Personalized Financial Advice"
                     className="text-4xl md:text-5xl"
                     delay={0}
                     gradient={true}

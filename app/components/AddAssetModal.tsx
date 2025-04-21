@@ -83,15 +83,15 @@ export default function AddAssetModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-[#1c1c1c] rounded-xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-hidden">
+      <div className="bg-[#1c1c1c] rounded-xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl font-bold pr-2">
             {assetToEdit ? "Edit Asset" : "Add New Asset"}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white/10 rounded-full transition-colors"
+            className="p-2 hover:bg-white/10 rounded-full transition-colors flex-shrink-0"
           >
             <X size={20} />
           </button>
@@ -99,9 +99,9 @@ export default function AddAssetModal({
 
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
         >
-          <div className="col-span-1 sm:col-span-2">
+          <div className="col-span-1 sm:col-span-2 w-full">
             <label className="block text-sm font-medium text-gray-400 mb-1">
               Asset Name
             </label>
@@ -116,7 +116,7 @@ export default function AddAssetModal({
             />
           </div>
 
-          <div className="col-span-1">
+          <div className="col-span-1 w-full">
             <label className="block text-sm font-medium text-gray-400 mb-1">
               Currency
             </label>
@@ -131,7 +131,7 @@ export default function AddAssetModal({
             />
           </div>
 
-          <div className="col-span-1">
+          <div className="col-span-1 w-full">
             <label className="block text-sm font-medium text-gray-400 mb-1">
               Interest Rate (%)
             </label>
@@ -147,8 +147,8 @@ export default function AddAssetModal({
             />
           </div>
 
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+          <div className="col-span-1 w-full">
+            <label className="block text-sm font-medium text-gray-400 mb-1 truncate">
               Tax Classification
             </label>
             <div className="relative">
@@ -184,8 +184,8 @@ export default function AddAssetModal({
             </div>
           </div>
 
-          <div className="col-span-1">
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+          <div className="col-span-1 w-full">
+            <label className="block text-sm font-medium text-gray-400 mb-1 truncate">
               Asset Type
             </label>
             <div className="relative">
@@ -213,7 +213,7 @@ export default function AddAssetModal({
             </div>
           </div>
 
-          <div className="col-span-1">
+          <div className="col-span-1 w-full">
             <label className="block text-sm font-medium text-gray-400 mb-1">
               Current Market Value (£)
             </label>
@@ -230,7 +230,7 @@ export default function AddAssetModal({
             />
           </div>
 
-          <div className="col-span-1 sm:col-span-2 flex justify-end gap-4 mt-6">
+          <div className="col-span-1 sm:col-span-2 flex justify-end gap-4 mt-6 w-full">
             <button
               type="button"
               onClick={onClose}

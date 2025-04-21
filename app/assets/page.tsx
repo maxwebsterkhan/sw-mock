@@ -209,64 +209,128 @@ export default function Assets() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full border-separate border-spacing-y-2">
-              <thead>
-                <tr className="text-left text-gray-400">
-                  <th className="pb-4 px-6">Asset Name</th>
-                  <th className="pb-4 text-right px-6">Type</th>
-                  <th className="pb-4 text-right px-6">Value</th>
-                  <th className="pb-4 text-right px-6">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredAssets.map((asset) =>
-                  editingAssetId === asset.id ? (
-                    <InlineAssetEditor
-                      key={asset.id}
-                      asset={asset}
-                      onSave={(updatedAsset) =>
-                        handleUpdateAsset(asset.id, updatedAsset)
-                      }
-                      onCancel={handleEditCancel}
-                    />
-                  ) : (
-                    <tr key={asset.id} className="bg-[#1c1c1c] rounded-lg mb-2">
-                      <td className="py-4 px-6 rounded-l-lg">
-                        <div className="font-medium text-white">
+            {/* Table layout for medium screens and up */}
+            <div className="hidden md:block">
+              <table className="w-full border-separate border-spacing-y-2">
+                <thead>
+                  <tr className="text-left text-gray-400">
+                    <th className="pb-4 px-6">Asset Name</th>
+                    <th className="pb-4 text-right px-6">Type</th>
+                    <th className="pb-4 text-right px-6">Value</th>
+                    <th className="pb-4 text-right px-6">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredAssets.map((asset) =>
+                    editingAssetId === asset.id ? (
+                      <InlineAssetEditor
+                        key={asset.id}
+                        asset={asset}
+                        onSave={(updatedAsset) =>
+                          handleUpdateAsset(asset.id, updatedAsset)
+                        }
+                        onCancel={handleEditCancel}
+                      />
+                    ) : (
+                      <tr
+                        key={asset.id}
+                        className="bg-[#1c1c1c] rounded-lg mb-2"
+                      >
+                        <td className="py-4 px-6 rounded-l-lg">
+                          <div className="font-medium text-white">
+                            {asset.name}
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 text-right">
+                          <span className="px-3 py-1 rounded-full text-sm bg-blue-500/10 text-blue-400">
+                            {asset.type}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-right text-white">
+                          {asset.currency === "GBP" ? "£" : "$"}
+                          {asset.value.toLocaleString()}
+                        </td>
+                        <td className="py-4 px-6 text-right rounded-r-lg">
+                          <div className="flex gap-2 justify-end">
+                            <button
+                              onClick={() => setEditingAssetId(asset.id)}
+                              className="text-blue-400 hover:text-blue-300 p-1.5 rounded-full hover:bg-blue-500/10"
+                              aria-label="Edit asset"
+                            >
+                              <Pencil size={18} />
+                            </button>
+                            <button
+                              className="text-red-400 hover:text-red-300 p-1.5 rounded-full hover:bg-red-500/10"
+                              aria-label="Delete asset"
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Card layout for small screens */}
+            <div className="md:hidden space-y-4">
+              {filteredAssets.map((asset) =>
+                editingAssetId === asset.id ? (
+                  <InlineAssetEditor
+                    key={asset.id}
+                    asset={asset}
+                    onSave={(updatedAsset) =>
+                      handleUpdateAsset(asset.id, updatedAsset)
+                    }
+                    onCancel={handleEditCancel}
+                  />
+                ) : (
+                  <div
+                    key={asset.id}
+                    className="bg-[#1c1c1c] rounded-xl p-4 shadow-sm"
+                  >
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h3 className="font-medium text-white text-base">
                           {asset.name}
-                        </div>
-                      </td>
-                      <td className="py-4 px-6 text-right">
-                        <span className="px-3 py-1 rounded-full text-sm bg-blue-500/10 text-blue-400">
+                        </h3>
+                        <span className="px-3 py-1 rounded-full text-xs bg-blue-500/10 text-blue-400 inline-block mt-2">
                           {asset.type}
                         </span>
-                      </td>
-                      <td className="py-4 px-6 text-right text-white">
-                        {asset.currency === "GBP" ? "£" : "$"}
-                        {asset.value.toLocaleString()}
-                      </td>
-                      <td className="py-4 px-6 text-right rounded-r-lg">
-                        <div className="flex gap-2 justify-end">
-                          <button
-                            onClick={() => setEditingAssetId(asset.id)}
-                            className="text-blue-400 hover:text-blue-300 p-1.5 rounded-full hover:bg-blue-500/10"
-                            aria-label="Edit asset"
-                          >
-                            <Pencil size={18} />
-                          </button>
-                          <button
-                            className="text-red-400 hover:text-red-300 p-1.5 rounded-full hover:bg-red-500/10"
-                            aria-label="Delete asset"
-                          >
-                            <Trash2 size={18} />
-                          </button>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-white font-bold">
+                          {asset.currency === "GBP" ? "£" : "$"}
+                          {asset.value.toLocaleString()}
                         </div>
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+                        <div className="text-xs text-gray-400 mt-1">
+                          Current Value
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-end gap-2 mt-4 border-t border-gray-800 pt-3">
+                      <button
+                        onClick={() => setEditingAssetId(asset.id)}
+                        className="text-blue-400 hover:text-blue-300 p-1.5 rounded-full hover:bg-blue-500/10 flex items-center gap-1"
+                        aria-label="Edit asset"
+                      >
+                        <Pencil size={16} />
+                        <span className="text-xs">Edit</span>
+                      </button>
+                      <button
+                        className="text-red-400 hover:text-red-300 p-1.5 rounded-full hover:bg-red-500/10 flex items-center gap-1"
+                        aria-label="Delete asset"
+                      >
+                        <Trash2 size={16} />
+                        <span className="text-xs">Delete</span>
+                      </button>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
           </div>
 
           <div className="mt-6 flex items-center">
